@@ -30,12 +30,73 @@
                 </div>
                 <!--TASK 3 BEGINS HERE-->
                 <div class="col-md-4 col-xl-2 col-xs-12 mt-4">
-                    <a href="#reservationForm" role="button" class="btn btn-lg btn-info" data-toggle="tooltip" data-placement="bottom"
-                        data-html="true" title="Or call us at <br /><strong>1-206-555-1234</strong>">Reserve Campsite</a>
+                    <a role="button" class="btn btn-lg btn-info" data-toggle="modal" data-target="#reserveModal">Reserve Campsite</a>
                 </div> <!--TASK 3 ENDS HERE-->
             </div>
         </div>
     </header>
+    
+<!--Week 3 Assignment Begins-->
+    <div class="modal-lg modal fade" id="reserveModal" role="dialog">
+        <div class="modal-lg modal-dialog ml-5" role="document">
+            <div class="modal-content">
+                <div class="modal-header card-header bg-info text-white">
+                    <h3 class="modal-title">Reserve a Campsite</h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form action="">
+                            <div class="form-row col">
+                                <div class="form-group col-sm-6">
+                                    <label for="" class="col-form-label">Number of Campers</label>
+                                </div>
+                                <div class="col">
+                                    <select name="nuCampers" id="nuCampers" class="form-control">
+                                        <option selected>Select...</option>
+                                        <option value="1">One</option>
+                                        <option value="1">Two</option>
+                                        <option value="1">Three</option>
+                                        <option value="1">Four</option>
+                                        <option value="1">Five</option>
+                                        <option value="1">Six</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row col">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-form-label" for="date">Date</label>
+                                </div>
+                                <div class="col">
+                                    <input class="form-control" type="date" id="date" name="date" placeholder="date">   
+                                </div>
+                            </div>
+                            <div class="form-row col">
+                                <div class="form-group col-sm-6">
+                                    <label class="col-form-label" for="date">Campsite Type</label>
+                                </div>
+                                <div class="form-group col-sm-6 btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-success active">
+                                        <input type="radio" name="siteType" id="siteTent" value="tent" autocomplete="off"> Tent
+                                    </label>
+                                    <label class="btn btn-primary">
+                                        <input type="radio" name="siteType" id="siteRV" value="RV" autocomplete="off"> RV
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-row col">
+                                <div class="form-group col-sm-6">
+                                    <button class="btn btn-secondary mt-3" type="submit">Cancel</button>
+                                    <button class="btn btn-primary mt-3" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Week 3 Assignment Ends-->
 
     <nav class="navbar navbar-expand-sm navbar-dark sticky-top">
         <div class="container">
@@ -141,6 +202,10 @@
                         <span class="carousel-control-next-icon"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                        <!--Exercise: Bootstrap and JQuery Part 2-->
+                        <button class="btn btn-danger btn-sm" id="carouselButton">
+                            <i class="fa fa-pause"></i>
+                        </button>
                 </div>
             </div>
         </div>
@@ -193,44 +258,8 @@
         </div>
 
         <!--TASK 2 BEGINS HERE-->
-        <div class="row row-content align-items-center form-group" id="reserveForm">
-            <div class="col-sm-6 mx-auto">
-                <div class="card">
-                    <h3 class="card-header bg-info text-white">Reserve a Campsite</h3>
-                    <div class="card-body">
-                        <form action="">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <label class="col-form-label" for="">Number of Campers</label> 
-                                </div>
-                                <div class="col-sm-6">
-                                    <select class="form-control" name="numCampers" id="numCampers">
-                                        <option selected>Select...</option>
-                                        <option value="1">1</option>
-                                        <option value="1">2</option>
-                                        <option value="1">3</option>
-                                        <option value="1">4</option>
-                                        <option value="1">5</option>
-                                        <option value="1">6</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <label class="col-sm-6 col-form-label" for="date">Date</label>
-                                <div class="col-sm-6">
-                                    <input class="form-control" type="date" id="date" name="date" placeholder="date">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <button class="btn btn-primary mt-3" type="submit">Reserve</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> <!--TASK 2 ENDS HERE-->
+        <!--Task 2 was deleted on week 3 assignment-->
+         <!--TASK 2 ENDS HERE-->
 
 
         </div>
@@ -268,12 +297,23 @@
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+    <!--Exercise: Bootstrap and JQuery Part 2-->
     <script>
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+            $(".carousel").carousel({ interval: 2000 });
+            $("#carouselButton").click(function () {
+                if ($("#carouselButton").children("i").hasClass("fa-pause")) {
+                    $(".carousel").carousel("pause");
+                    $("#carouselButton").children("i").removeClass("fa-pause");
+                    $("#carouselButton").children("i").addClass("fa-play");
+                } else {
+                    $(".carousel").carousel("cycle");
+                    $("#carouselButton").children("i").removeClass("fa-play");
+                    $("#carouselButton").children("i").addClass("fa-pause");
+                }
+            });
+        });
     </script>
-
     
 </body>
 
